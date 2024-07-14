@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Bag of Chips</title>
+    <style>
+      #container {
+        position: relative;
+        width: 300px;
+        height: 400px;
+      }
+      #closedBag,
+      #openBag,
+      .chip {
+        position: absolute;
+        width: 100%;
+        height: auto;
+        top: 0;
+        left: 0;
+      }
+      #openBag,
+      .chip {
+        display: none;
+      }
+      .chip {
+        width: 50px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <img id="closedBag" src="images/bag-closed.jpeg" alt="Closed Bag" />
+      <img id="openBag" src="images/bag-open.png" alt="Open Bag" />
+      <img
+        class="chip"
+        src="images/chip-1.png"
+        alt="Chip"
+        style="top: 100px; left: 50px" />
+      <img
+        class="chip"
+        src="images/chip-1.png"
+        alt="Chip"
+        style="top: 150px; left: 100px" />
+      <img
+        class="chip"
+        src="images/chip-1.png"
+        alt="Chip"
+        style="top: 200px; left: 150px" />
+    </div>
+
+    <script>
+      const closedBag = document.getElementById("closedBag");
+      const openBag = document.getElementById("openBag");
+      const chips = document.querySelectorAll(".chip");
+
+      closedBag.addEventListener("click", () => {
+        closedBag.style.display = "none";
+        openBag.style.display = "block";
+        chips.forEach((chip) => {
+          chip.style.display = "block";
+          chip.style.animation = "fall 1s forwards";
+        });
+        setTimeout(() => {
+          chips.forEach((chip) => (chip.style.display = "none"));
+        }, 2000); // Disappear after 2 seconds
+      });
+
+      document.head.insertAdjacentHTML(
+        "beforeend",
+        `
+            <style>
+                @keyframes fall {
+                    0% { transform: translateY(0); }
+                    100% { transform: translateY(300px); }
+                }
+            </style>
+        `
+      );
+    </script>
+  </body>
+</html>

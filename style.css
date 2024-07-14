@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }
+  
+  .bag {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .bag img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .bag .bag-open {
+    opacity: 0;
+  }
+  
+  .chips {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+  }
+  
+  .chip {
+    position: absolute;
+    width: 50px; /* Adjust size as needed */
+    top: -50px;
+    left: 0;
+    animation: fall 2s linear infinite;
+  }
+  
+  @keyframes fall {
+    0% { top: -50px; }
+    100% { top: 100vh; }
+  }
+  
